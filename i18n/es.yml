@@ -1,0 +1,15 @@
+front_end_reservation:
+  titles:
+    choose_product: Seleccionar product
+    complete_data: Completar datos
+    summary: Su reserva
+  search_title: Buscar 
+  search_button: Buscar  
+  pickup_place: Lugar de entrega
+  date_from: Fecha de entrega   
+  time_from: Hora de entrega
+  return_place: Lugar de devolución
+  date_to: Fecha de devolución
+  time_to: Hora de devolución
+  driver_under_age: Conductor menor
+  not_available: Consulte disponibilidad telefónicamente    

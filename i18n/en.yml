@@ -1,0 +1,15 @@
+front_end_reservation:
+  titles:
+    choose_product: Choose product
+    complete_data: Complete data
+    summary: Your reservation
+  search_title: Search 
+  search_button: Search  
+  pickup_place: Pick up place
+  date_from: Pick up date   
+  time_from: Pick up time
+  return_place: Return place
+  date_to: Return date
+  time_to: Return date
+  driver_under_age: Young driver
+  not_available: Not available    
