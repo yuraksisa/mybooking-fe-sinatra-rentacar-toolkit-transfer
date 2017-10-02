@@ -1,7 +1,7 @@
 require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
 	     'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es', 
-	     'jquery.ui.datepicker.validation', 'datejs',
-	     'bootstrap', 'bootstrap.select'], 
+	     'jquery.ui.datepicker.validation', 'datejs', 
+	     'jquery.uniform'], 
 	     function($, RemoteDataSource, SelectSelector,commonServices) {
 
   selectorModel = {
@@ -63,19 +63,15 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         var pickupPlace = new SelectSelector('pickup_place', 
         		dataSourcePickupPlaces, null, false, '',
                 function() { 
-
-                    $('#pickup_place').selectpicker();
-                    $('#pickup_place').selectpicker('refresh');  
-
+                    $.uniform.update('#pickup_place');
                 } );             
 
         var dataSourceReturnPlaces = new RemoteDataSource(commonServices.URL_PREFIX + '/api/booking/frontend/return-places',{'id':'name','description':'name'});
         var returnPlace = new SelectSelector('return_place', 
         		dataSourcePickupPlaces, null, false, '',
                 function() {
-               
-                	  $('#return_place').selectpicker();
-                    $('#return_place').selectpicker('refresh'); 
+
+                    $.uniform.update('#return_place'); 
 
                 } );          
 
@@ -91,18 +87,17 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         		dataSourcePickupReturnTime, '10:00', false, '',
                 function() {
                    
-                	  $('#time_from').selectpicker();
 					          $('#time_from').val('10:00');
-					          $('#time_from').selectpicker('refresh');
+                    $.uniform.update('#time_from'); 
+
 
                 } );             
         var returnTime = new SelectSelector('time_to', 
         		dataSourcePickupReturnTime, '10:00', false, '',
                 function() {
                 
-                	  $('#time_to').selectpicker();
 					          $('#time_to').val('10:00');
-					          $('#time_to').selectpicker('refresh');
+                    $.uniform.update('#time_to'); 
                	 
                 } );  
 

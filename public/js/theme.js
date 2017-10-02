@@ -7,47 +7,18 @@ require(['jquery', 'jquery.migrate',
          'wow.min', 
          ],function($){
 
-// search.js
 (function($){
 
-    "use strict";
-    
-    $(document).ready(function () {
+    /*  
+    $(document).on('ready page:load', function () {
         search.init();
-    });
-    
-    var search = {
-    
-        init: function () {
-    
-            // SEARCH
-            $('.advanced-search .f-row:nth-child(2)').hide(500);
-            $('input[type=radio]#oneway').click(function() {
-                $('.f-row:nth-child(2)').hide(500);
-            });
-            $('input[type=radio]#return').click(function() {
-                $('.f-row:nth-child(2)').slideToggle(500);
-            });
-
-            // DATE & TIME PICKER
-            $('#dep-date,#ret-date').datetimepicker();
-        }
-    }
-
-})(jQuery);
-
-// scripts.js
-(function($){
-
-    "use strict";
-      
-    $(document).ready(function () {
         transfers.init();
     });
     
     $(window).on('load', function() {
         transfers.load();
     });
+    */
     
     // ANIMATIONS
     new WOW().init();
@@ -161,6 +132,9 @@ require(['jquery', 'jquery.migrate',
             $('.preloader').fadeOut();
         }
     }
+
+    transfers.init();
+    transfers.load();
 
 })(jQuery);
 
