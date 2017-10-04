@@ -38,7 +38,7 @@
   <![endif]-->
 </head>
 
-  <body class="home">
+  <body <% if request.path == '/' %>class="home"<%end%>>
     <!-- Preloader -->
     <div class="preloader">
       <div id="followingBallsG">

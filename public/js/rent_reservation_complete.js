@@ -3,7 +3,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         'ysdtemplate', 'jquery.formparams', 'jquery.form',
 	     'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es', 
 	     'jquery.ui.datepicker.validation', 'datejs',
-	     'bootstrap', 'bootstrap.select'], 
+	     'bootstrap', 'bootstrap.select', 'jquery.uniform'], 
 	     function($, RemoteDataSource, SelectSelector, commonServices, tmpl) {
 
   model = { // THE MODEL
@@ -443,17 +443,23 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
 
     updateExtras: function() { // Updates the extras (included the selected by the transaction)
 
+        var result = ''; 
+        result += tmpl('script_extras')({extras: model.extras, extrasInShoppingCart: model.getShoppingCartExtras()});
+        $('#extras_listing').html(result);
+
         // Show the extras
+        /*
         var result = '';
         for (var idx=0;idx<model.extras.length;idx++) {
             result += tmpl('script_detailed_extra')({extra:model.extras[idx],
                 extrasInShoppingCart: model.getShoppingCartExtras()});
         }
         $('#extras_listing').html(result);
-
+        */
         // Setup events
-        $('.extra-select').selectpicker();
-        $('.extra-checkbox').bind('change', function() {
+        $('.extra-select').uniform();
+        //$('.extra-select').selectpicker();
+        /*$('.extra-checkbox').bind('change', function() {
             var extraCode = $(this).attr('data-value');
             var checked = $(this).is(':checked');
             if (checked) {
@@ -462,7 +468,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
             else {
                 controller.extraUnchecked(extraCode);
             }
-        });
+        });*/
         $('.extra-select').bind('change', function() {
             var extraCode = $(this).attr('data-value');
             var extraQuantity = $(this).val();

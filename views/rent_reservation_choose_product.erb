@@ -1,3 +1,58 @@
+    <!-- Search -->
+    <div class="advanced-search color" id="booking">
+      <div class="wrap">
+        <form role="form" action="/reserva/producto<%if session[:locale] && settings.default_locale != session[:locale]%>?lang=<%=session[:locale]%><%end%>" method="post">
+          <!-- Row -->
+          <div class="f-row">
+            <div class="form-group datepicker one-third">
+              <label for="dep-date"><%=t.front_end_reservation.pickup_place%></label>
+              <select name="pickup_place" id="pickup_place">
+              </select>
+            </div>
+            <div class="form-group select one-third">
+              <label><%=t.front_end_reservation.date_from%></label>
+              <input type="text" class="form-control" id="date_from" name="date_from" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group select one-third">
+              <label><%=t.front_end_reservation.time_from%></label>
+              <select name="time_from" id="time_from">
+              </select>
+            </div>
+          </div>
+          <!-- //Row -->
+          
+          <!-- Row -->
+          <div class="f-row">
+            <div class="form-group datepicker one-third">
+              <label for="ret-date"><%=t.front_end_reservation.return_place%></label>
+              <select name="return_place" id="return_place">
+                            </select>
+            </div>
+            <div class="form-group select one-third">
+              <label><%=t.front_end_reservation.date_to%></label>
+              <input type="text" class="form-control" id="date_to" name="date_to" placeholder="dd/mm/yyyy">
+            </div>
+            <div class="form-group select one-third">
+              <label><%=t.front_end_reservation.time_to%></label>
+              <select name="time_to" id="time_to">
+              </select>
+            </div>
+          </div>
+          <!-- //Row -->
+          
+          <!-- Row -->
+          <div class="f-row"> 
+            <div class="form-group right">
+              <button type="submit" id="formSearchSubmit" class="btn large black"><%=t.front_end_reservation.search_button%></button>
+            </div>
+          </div>
+          <!--// Row -->
+        </form>
+      </div>
+    </div>
+    <!-- //Search -->
+
+        <!-- SEARCH RESULT -->
         <div class="wrap">
             <div class="row">
                 <!--- Content -->
@@ -12,12 +67,13 @@
                 <!--- //Content -->
             </div>
         </div>
+        <!-- //SEARCH RESULT -->
 
         <script type="text/tpml" id="script_detailed_product">
 
                         <!-- Item -->
                         <article class="result">
-                            <div class="one-fourth heightfix"><img src="<%%=product.photo%>" alt="" style="min-height:202px"/></div>
+                            <div class="one-fourth heightfix"><img src="<%%=product.photo%>" alt="" style="max-width: 90%; display: block; margin: 0 auto;"/></div>
                             <div class="one-half heightfix">
                                 <h3><%%=product.name%></h3>
                                 <ul>
@@ -30,7 +86,7 @@
                             <div class="one-fourth heightfix">
                                 <div>
                                     <div class="price"><%%=new Number(product.price).toFixed(2)%><small>€</small></div>
-                                    <a href="booking-step1.html" class="btn grey large">SELECCIONAR</a>
+                                    <a href="#" class="btn grey large btn-choose-product" data-product="<%%=product.code%>">SELECCIONAR</a>
                                 </div>
                             </div>
                         </article>

@@ -2,7 +2,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         'ysdtemplate',
 	     'jquery.validate', 'jquery.ui', 'jquery.ui.datepicker-es', 
 	     'jquery.ui.datepicker.validation', 'datejs',
-	     'bootstrap', 'bootstrap.select'], 
+	     'jquery.uniform'], 
 	     function($, RemoteDataSource, SelectSelector, commonServices, tmpl) {
 
   model = {
@@ -307,7 +307,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         var pickupPlace = new SelectSelector('pickup_place', 
             dataSourcePickupPlaces, null, false, '',
                 function() { 
-                  $('#pickup_place').selectpicker();
+                  $.uniform.update('#pickup_place');
                   model.loadedPickupPlaces = true;
                   model.checkLoading();
                 } );             
@@ -316,7 +316,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         var returnPlace = new SelectSelector('return_place', 
             dataSourcePickupPlaces, null, false, '',
                 function() { 
-                  $('#return_place').selectpicker(); 
+                  $.uniform.update('#return_place');  
                   model.loadedReturnPlaces = true;
                   model.checkLoading();
                 } );          
@@ -336,9 +336,8 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         var pickupTime = new SelectSelector('time_from', 
             dataSourcePickupTime, '10:00', false, '',
                 function() { 
-                  $('#time_from').selectpicker();
                   $('#time_from').val('10:00');
-                  $('#time_from').selectpicker('refresh');
+                  $.uniform.update('#time_from'); 
                   model.loadedPickupTimes = true;
                   model.checkLoading();
                 } );   
@@ -346,9 +345,8 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
         var returnTime = new SelectSelector('time_to', 
             dataSourceReturnTime, '10:00', false, '',
                 function() { 
-                  $('#time_to').selectpicker();
                   $('#time_to').val('10:00');
-                  $('#time_to').selectpicker('refresh');
+                  $.uniform.update('#time_to'); 
                   model.loadedReturnTimes = true;
                   model.checkLoading();                
                 } );  
@@ -359,31 +357,31 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
     showShoppingCart: function() {
 
         $('#pickup_place').val(model.shopping_cart.pickup_place.replace(/\+/g, ' '));         
-        $('#pickup_place').selectpicker('refresh');
+        $.uniform.update('#pickup_place');
         $('#return_place').val(model.shopping_cart.return_place.replace(/\+/g, ' '));         
-        $('#return_place').selectpicker('refresh');
+        $.uniform.update('#return_place');
 
         if (model.shopping_cart.date_from instanceof Date) {
             var date_from = model.shopping_cart.date_from.getDate() + '/' + (model.shopping_cart.date_from.getMonth()+1)+ '/' + model.shopping_cart.date_from.getFullYear();
         }
-        else if (model.shopping_cart.date_from instanceof String) {
+        else if (typeof model.shopping_cart.date_from == 'string') {
             var date_from = model.shopping_cart.date_from.substring(8,10) + '/' + model.shopping_cart.date_from.substring(5,7) + '/' + model.shopping_cart.date_from.substring(0,4);
         }
 
         if (model.shopping_cart.date_to instanceof Date) {
             var date_to = model.shopping_cart.date_to.getDate() + '/' + (model.shopping_cart.date_to.getMonth()+1) + '/' + model.shopping_cart.date_to.getFullYear();
         }
-        else if (model.shopping_cart.date_to instanceof String) {
+        else if (typeof model.shopping_cart.date_to == 'string') {
             var date_to = model.shopping_cart.date_to.substring(8, 10) + '/' + model.shopping_cart.date_to.substring(5, 7) + '/' + model.shopping_cart.date_to.substring(0, 4);
         }
         
         $('#date_from').datepicker("setDate", date_from);        
         $('#time_from').val(model.shopping_cart.time_from);
-        $('#time_from').selectpicker('refresh');
+        $.uniform.update('#time_from');
         
         $('#date_to').datepicker("setDate", date_to); 
         $('#time_to').val(model.shopping_cart.time_to);
-        $('#time_to').selectpicker('refresh');    
+        $.uniform.update('#time_to');
 
         // Show the products
         var result = '';
