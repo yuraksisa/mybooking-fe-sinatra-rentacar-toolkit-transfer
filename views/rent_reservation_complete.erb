@@ -1,39 +1,80 @@
     <!-- Search -->
-    <div class="output color twoway">
-      <div class="wrap">
-        <div>
-          <p>28.08.2014 <small>at</small> 10:00</p>
-          <p>Berlin Schonefeld Airport <small>to</small> Central Train Station</p>
-        </div>
-        
-        <div>
-          <p>02.09.2014 <small>at</small> 17:00</p>
-          <p>Berlin Central Train Station <small>to</small> Schonefeld Airport</p>
-        </div>
-      </div>
+    <div id="reservation_header">
     </div>
     <!-- //Search -->
     
     <div class="wrap">
       <div class="row">
         <!--- Content -->
-        <div class="full-width content">
+        <!--div class="full-width content">
           <h2>Extras</h2>
-        </div>
+        </div-->
         <!--- //Content -->
         
         <div class="two-third">
+          <h2 style="display: none">Información del producto</h2>
+          <div id="selected_product" style="display: none">
+          </div>
+
+          <h2>Extras</h2>          
+          <!-- Placeholder for extras -->
           <form>
-            <!-- Placeholder for extras -->
             <div id="extras_listing">
             </div>
-            <!-- /Placeholder for extras -->
-          
-            <div class="actions">
-              <a href="search-results.html" class="btn medium back">Go back</a>
-              <a href="booking-step2.html" class="btn medium color right">Continue</a>
-            </div>
           </form>
+          <!-- /Placeholder for extras -->
+          <!-- Customer form -->
+          <form name="reservation_form">
+            <h2>Información del cliente</h2>
+            <div class="f-row">
+              <div class="one-half">
+                <label for="name">Nombre*</label>
+                <input type="text" id="customer_name" name="customer_name"/>
+              </div>
+              <div class="one-half">
+                <label for="number">Apellidos*</label>
+                <input type="text" id="customer_surname" name="customer_surname"/>
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="one-half">
+                <label for="email">Correo electrónico*</label>
+                <input type="email" id="customer_email" name="customer_email" />
+              </div>
+              <div class="one-half">
+                <label for="email2">Confirmar correo electrónico*</label>
+                <input type="email" id="confirm_customer_email" />
+              </div>
+            </div>
+            <div class="f-row">
+              <div class="one-half">
+                <label for="address">Teléfono principal*</label>
+                <input type="text" id="customer_phone" name="customer_phone" />
+              </div>
+              <div class="one-half">
+                <label for="zip">Teléfono alternativo</label>
+                <input type="text" id="customer_mobile_phone" name="customer_mobile_phone" />
+              </div>
+            </div>
+            <h2>Información adicional</h2>
+            <div class="f-row">
+              <div>
+                <label for="address">Comentarios</label>
+                <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+              </div>
+            </div>  
+          </form>
+          <!-- Placeholder for payment -->
+          <div id="payment_detail">
+          </div> 
+          <!-- /Placeholder for payment -->
+          <div class="actions">
+            <a id="btn_reservation" href="#" class="btn medium color right">Solicitar reserva</a>
+          </div>
+          <!-- Error in form placeholder -->
+          <div id="reservation_error" style="display:none">
+          </div>
+          <!-- //Error in form placehold -->
         </div>
         
         <!--- Sidebar -->
@@ -50,7 +91,23 @@
       </div>
     </div>
 
-
+<script type="text/tpml" id="script_reservation_header">
+    <div class="output color twoway">
+      <div class="wrap">
+        <div>
+          <p>Entrega</p>
+          <p><%%=new Date(shopping_cart.date_from).toString('dd.MM.yyyy')%> <small>a las</small> <%%=shopping_cart.time_from%></p>
+          <p><%%=shopping_cart.pickup_place%></p>
+        </div>
+        
+        <div>
+          <p>Devolución</p>
+          <p><%%=new Date(shopping_cart.date_to).toString('dd.MM.yyyy')%> <small>a las</small> <%%=shopping_cart.time_to%></p>
+          <p><%%=shopping_cart.return_place%></p>
+        </div>
+      </div>
+    </div>
+</script>
 
  
 
@@ -190,54 +247,19 @@
 
 <!-- Script payment -->
 <script type="text/tmpl" id="script_payment_detail">
-                        <h3 class="block-title alt"><i class="fa fa-angle-down"></i>Pago</h3>
-                        <div class="alert alert-success">
-                          <p>Para confirmar la reserva se requiere una paga y señal del 20% del importe total de la reserva</p>
-                        </div>
-                        <div class="panel-group payments-options" id="accordion" role="tablist" aria-multiselectable="true">
-                          <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                              <h4 class="panel-title">
-                                <a data-payment-method="none" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
-                                  <span class="dot"></span> Sólo solicitud de reserva
-                                </a>
-                              </h4>
-                            </div>
-                            <div id="collapse2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2"></div>
-                          </div>
-                          <%% if (sales_process.can_pay) { %>
-                          <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" data-payment-method="redsys256" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseThree">
-                                            <span class="dot"></span> Tarjeta de crédito (20% de paga y señal para confirmar reserva)
-                                        </a>
-                                <span class="overflowed pull-right">
-                                    <!--img src="assets/img/preview/payments/mastercard-2.jpg" alt=""/>
-                                    <img src="assets/img/preview/payments/visa-2.jpg" alt=""/>
-                                    <img src="assets/img/preview/payments/american-express-2.jpg" alt=""/>
-                                    <img src="assets/img/preview/payments/discovery-2.jpg" alt=""/>
-                                    <img src="assets/img/preview/payments/eheck-2.jpg" alt=""/-->
-                                </span>
-                                    </h4>
-                                </div>
-                                <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3"></div>
-                          </div>
-                          <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="heading4">
-                                    <h4 class="panel-title">
-                                        <a class="collapsed" data-payment-method="paypal_standard" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                            <span class="dot"></span> PayPal (20% de paga y señal para confirmar reserva)
-                                        </a>
-                                        <span class="overflowed pull-right">
-                                           <!--img src="assets/img/preview/payments/paypal-2.jpg" alt=""/-->
-                                        </span>
-                                    </h4>
-                                </div>
-                                <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4"></div>
-                          </div>
-                          <%% } %>
-                        </div>
+          <h2>Pago</h2> 
+          <p>Para confirmar la reserva se requiere una paga y señal del 20% del importe total de la reserva</p>
+          <form>
+            <div class="f-row">
+            <input type="radio" id="payment_method_1" name="payment_method" value="none" checked style="width: 20px; height: 20px"><label for="payment_method1">Sólo solicitud de reserva</label>
+            <%% if (sales_process.can_pay) { %>
+              <br>
+              <input type="radio" id="payment_method_2" name="payment_method" value="redsys256" style="width: 20px; height: 20px"><label for="payment_method2">Tarjeta de crédito (20% de paga y señal para confirmar reserva)</label>
+              <br>
+              <input type="radio" id="payment_method_3" name="payment_method" value="paypal_standard" style="width: 20px; height: 20px"><label for="payment_method2">PayPal (20% de paga y señal para confirmar reserva)</label>
+            <%% } %>  
+            </div>
+          </form>
 </script> 
 
 

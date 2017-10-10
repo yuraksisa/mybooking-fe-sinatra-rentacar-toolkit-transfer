@@ -12,4 +12,22 @@ front_end_reservation:
   date_to: Fecha de devolución
   time_to: Hora de devolución
   driver_under_age: Conductor menor
-  not_available: Consulte disponibilidad telefónicamente    
+  not_available: Consulte disponibilidad telefónicamente
+new_booking:
+  customer_name: 
+    required: El nombre del cliente es obligatorio
+  customer_surname: 
+    required: Los apellidos del cliente son obligatorios 
+  customer_email: 
+    required: El correo electrónico del cliente es obligatorio
+    format: El correo electrónico debe estar en formato usuario@dominio.com
+  customer_email_confirmation: 
+    required: Confirmación del correo electrónico obligatorio
+    format: El correo electrónico debe estar en formato usuario@dominio.com
+    equal_to: Debe ser igual al correo electrónico
+  customer_phone: 
+    required: El teléfono del cliente es obligatorio
+    min_length: Debe introducir un número de teléfono de 9 dígitos      
+  form_errors:
+    title: Formulario no válido
+    description: Por favor revise el formulario. Contiene datos no válidos   

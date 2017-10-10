@@ -226,8 +226,7 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
     buildCheckoutDataParams: function() {
 
       var reservation = $('form[name=reservation_form]').formParams(false);
-      reservation.comments = $('#comments').val();
-      reservation.payment = $('#accordion a').not('.collapsed').attr('data-payment-method');
+      reservation.payment = $('input[name=payment_method]').val();
 
       var reservationJSON = JSON.stringify(reservation);
 
@@ -422,16 +421,26 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
     updateShoppingCart: function() { // Updates the shopping cart
     	
     	// Show the product information
-	  	var productInfo = tmpl('script_product_detail')(
-                    {product: model.getShoppingCartProduct(),
-										 shopping_cart: model.shopping_cart});
-		  $('#selected_product').html(productInfo);
+      this.updateProductDetail();
 
       // Update the summary
+      this.updateShoppingCartHeader();
       this.updateShoppingCartSummary();
       this.updateExtras();
       this.updatePayment();
 
+    },
+
+    updateProductDetail: function() {
+      var productInfo = tmpl('script_product_detail')(
+                    {product: model.getShoppingCartProduct(),
+                     shopping_cart: model.shopping_cart});
+      $('#selected_product').html(productInfo);
+    },
+
+    updateShoppingCartHeader: function() { // Updates the shopping cart header (dates)
+       var reservationHeader = tmpl('script_reservation_header')({shopping_cart: model.shopping_cart});
+       $('#reservation_header').html(reservationHeader);
     },
 
     updateShoppingCartSummary: function() { // Updates the shopping cart summary (total)
