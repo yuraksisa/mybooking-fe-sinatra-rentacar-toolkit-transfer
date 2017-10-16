@@ -128,18 +128,24 @@ require(['jquery', 'YSDRemoteDataSource','YSDSelectSelector','/js/common.js',
     },
 
     updateBooking: function() { // Updates the shopping cart
-      
-      // Show the product information
-      var productInfo = tmpl('script_product_detail')(
-                    {product: model.getBookingProduct(),
-                     booking: model.booking});
-      $('#selected_product').html(productInfo);
-      $('#reservation_title').html(model.booking.summary_status);
 
+      this.updateTitle();
+      this.updateProduct();
       this.updateBookingSummary();
       this.updateExtras();
       this.updateCustomer();
 
+    },
+
+    updateTitle: function() {
+        $('#reservation_title').html(model.booking.summary_status);
+    },
+
+    updateProduct: function() {
+        var productInfo = tmpl('script_product_detail')(
+            {product: model.getBookingProduct(),
+                booking: model.booking});
+        $('#selected_product').html(productInfo);
     },
 
     updateBookingSummary: function() { // Updates the shopping cart summary (total)

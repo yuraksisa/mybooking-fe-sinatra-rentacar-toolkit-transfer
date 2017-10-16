@@ -12,8 +12,7 @@
         <!--- //Content -->
         
         <div class="two-third">
-          <h2 style="display: none">Información del producto</h2>
-          <div id="selected_product" style="display: none">
+          <div id="selected_product">
           </div>
 
           <h2>Extras</h2>          
@@ -113,35 +112,17 @@
 
 <script type="text/tpml" id="script_product_detail">
 
-    <h3 class="block-title alt">
-      <i class="fa fa-angle-down"></i>Información del producto
-    </h3>
-    <div class="car-big-card alt">
-      <div class="row">
-        <div class="col-md-8">
-          <div>
-            <div class="item">
-              <img class="img-responsive" src="<%%=product.full_photo%>" alt=""/>
+
+    <h2>Información del producto</h2>
+
+    <article class="single hentry">
+						<div class="entry-featured">
+							<img style="display: block; margin: 0 auto;" src="<%%=product.full_photo%>" alt="" />
+						</div>
+						<div class="entry-content">
+							<h3><%%=product.name%> <span style="display:inline-block; float: right"><%%=new Number(shopping_cart.item_cost).toFixed(2)%>€</span></h3>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="car-details">
-             <div class="list">
-                <ul>
-                  <li class="title">
-                    <h2><%%=product.name%></h2>
-                  </li>
-                  <%%=product.description%>
-                </ul>
-             </div>
-             <div class="price">
-                <strong><%%=new Number(shopping_cart.item_cost).toFixed(2)%></strong>€ <i class="fa fa-info-circle"></i>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
+    </article>
 
 </script>
 
@@ -180,67 +161,67 @@
 
 <script type="text/tmpl" id="script_reservation_summary">
 
-            <h4>Detalle de la reserva</h4>
-            <div class="summary">
-              <div>
-                <h5>ENTREGA</h5>
-                <dl>
-                  <dt>Fecha</dt>
-                  <dd><%%=new Date(shopping_cart.date_from).toString('d MMMM yyyy')%> <%%=shopping_cart.time_from%></dd>
-                  <dt>Lugar</dt>
-                  <dd><%%=shopping_cart.pickup_place%></dd>
-                </dl>
-              </div>
+    <h4>Detalle de la reserva</h4>
+    <div class="summary">
+      <div>
+        <h5>ENTREGA</h5>
+        <dl>
+          <dt>Fecha</dt>
+          <dd><%%=new Date(shopping_cart.date_from).toString('d MMMM yyyy')%> <%%=shopping_cart.time_from%></dd>
+          <dt>Lugar</dt>
+          <dd><%%=shopping_cart.pickup_place%></dd>
+        </dl>
+      </div>
 
-              <div>
-                <h5>DEVOLUCIÓN</h5>
-                <dl>
-                  <dt>Fecha</dt>
-                  <dd><%%=new Date(shopping_cart.date_to).toString('d MMMM yyyy')%> <%%=shopping_cart.time_to%></dd>
-                  <dt>Lugar</dt>
-                  <dd><%%=shopping_cart.return_place%></dd>
-                </dl>
-              </div>
+      <div>
+        <h5>DEVOLUCIÓN</h5>
+        <dl>
+          <dt>Fecha</dt>
+          <dd><%%=new Date(shopping_cart.date_to).toString('d MMMM yyyy')%> <%%=shopping_cart.time_to%></dd>
+          <dt>Lugar</dt>
+          <dd><%%=shopping_cart.return_place%></dd>
+        </dl>
+      </div>
 
-              <div>
-                <h5>COSTE</h5>
-                <dl>
-            
-                  <dt>Producto</dt>
-                  <dd><%%=new Number(shopping_cart.item_cost).toFixed(2)%>€</dd>
+      <div>
+        <h5>COSTE</h5>
+        <dl>
 
-            <%% if (shopping_cart.extras_cost > 0) { %>
-                  <dt>Extras</dt>
-                  <dd><%%=new Number(shopping_cart.extras_cost).toFixed(2)%>€</dd>
-            <%% } %>
+          <dt>Producto</dt>
+          <dd><%%=new Number(shopping_cart.item_cost).toFixed(2)%>€</dd>
 
-            <%% if (shopping_cart.time_from_cost > 0) { %>
-                  <dt>H.Entrega</dt>
-                  <dd><%%=new Number(shopping_cart.time_from_cost).toFixed(2)%>€</dd>
-            <%% } %>
+    <%% if (shopping_cart.extras_cost > 0) { %>
+          <dt>Extras</dt>
+          <dd><%%=new Number(shopping_cart.extras_cost).toFixed(2)%>€</dd>
+    <%% } %>
 
-            <%% if (shopping_cart.pickup_place_cost > 0) { %>
-                  <dt>L.Entrega</dt>
-                  <dd><%%=new Number(shopping_cart.pickup_place_cost).toFixed(2)%>€</dd>
-            <%% } %>
+    <%% if (shopping_cart.time_from_cost > 0) { %>
+          <dt>H.Entrega</dt>
+          <dd><%%=new Number(shopping_cart.time_from_cost).toFixed(2)%>€</dd>
+    <%% } %>
 
-            <%% if (shopping_cart.time_to_cost > 0) { %>
-                  <dt>H.Devolución</dt>
-                  <dd><%%=new Number(shopping_cart.time_to_cost).toFixed(2)%>€</dd>
-            <%% } %>
+    <%% if (shopping_cart.pickup_place_cost > 0) { %>
+          <dt>L.Entrega</dt>
+          <dd><%%=new Number(shopping_cart.pickup_place_cost).toFixed(2)%>€</dd>
+    <%% } %>
 
-            <%% if (shopping_cart.return_place_cost > 0) { %>
-                  <dt>L.Devolución</dt>
-                  <dd><%%=new Number(shopping_cart.return_place_cost).toFixed(2)%>€</dd>
-            <%% } %>
-                </dl>
-              </div>              
-              
-              <dl class="total">
-                <dt>Total</dt>
-                <dd><%%=new Number(shopping_cart.total_cost).toFixed(2)%>€</dd>
-              </dl>
-            </div>
+    <%% if (shopping_cart.time_to_cost > 0) { %>
+          <dt>H.Devolución</dt>
+          <dd><%%=new Number(shopping_cart.time_to_cost).toFixed(2)%>€</dd>
+    <%% } %>
+
+    <%% if (shopping_cart.return_place_cost > 0) { %>
+          <dt>L.Devolución</dt>
+          <dd><%%=new Number(shopping_cart.return_place_cost).toFixed(2)%>€</dd>
+    <%% } %>
+        </dl>
+      </div>
+
+      <dl class="total">
+        <dt>Total</dt>
+        <dd><%%=new Number(shopping_cart.total_cost).toFixed(2)%>€</dd>
+      </dl>
+    </div>
 
 
 </script>
