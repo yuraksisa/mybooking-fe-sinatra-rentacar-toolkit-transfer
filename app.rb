@@ -96,6 +96,7 @@ get '/reserva/completar' do
 
 end
 
+
 #
 # Show reservation page
 #
