@@ -37,6 +37,13 @@
   <script src="assets/plugins/iesupport/html5shiv.js"></script>
   <script src="assets/plugins/iesupport/respond.min.js"></script>
   <![endif]-->
+
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
 </head>
 
   <body <% if request.path == '/' %>class="home"<%end%>>
@@ -63,9 +70,9 @@
         <!-- Main Nav -->
         <nav role="navigation" class="main-nav">
           <ul>
-            <li <% if request.path != '/condiciones'%>class="active"<%end%>><a href="/" title="">Inicio</a></li>
-            <li <% if request.path == '/condiciones'%>class="active"<%end%>><a href="/condiciones" title="Condiciones de alquiler">Condiciones</a></li>
-            <li><a href="/contacto" title="Contacto">Contacto</a></li>
+            <li><a href="/" title="">Inicio</a></li>
+            <li><a href="/condiciones" title="Condiciones de alquiler">Condiciones</a></li>
+            <li class="active"><a href="/contacto" title="Contacto">Contacto</a></li>
           </ul>
         </nav>
         <!-- //Main Nav -->
@@ -77,13 +84,13 @@
   <main class="main" role="main">
 
     <% unless page.title.nil? || page.title.empty? %>
-        <header class="site-title color">
-          <div class="wrap">
-            <div class="container">
-              <h1><%=page.title%></h1>
-            </div>
-          </div>
-        </header>
+    <header class="site-title color">
+      <div class="wrap">
+        <div class="container">
+          <h1><%=page.title%></h1>
+        </div>
+      </div>
+    </header>
     <% end %>
 
     <!-- The content in the layout -->
@@ -102,6 +109,25 @@
   <% if !page.scripts_source.nil? && !page.scripts_source.empty? %>
     <%= page.scripts_source %>
   <% end %>
+
+  <script>
+      function initMap() {
+          var uluru = {lat: 39.9841, lng: 4.1133};
+          var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 12,
+              center: uluru
+          });
+          var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+          });
+      }
+  </script>
+
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDrcnboUQqXVOyMGzPNsudyUkP552CkW4&callback=initMap">
+  </script>
+
   </body>
 </html>
 

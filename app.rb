@@ -71,7 +71,7 @@ end
   template = ERB.new File.read('./public/js/rent_reservation_choose_product.js') 	
   script = template.result(binding)
 
-  page = {title: t.front_end_reservation.titles.choose_product, 
+  page = {title: nil,
   	      variables: {},
   	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}
 
@@ -87,7 +87,7 @@ get '/reserva/completar' do
   template = ERB.new File.read('./public/js/rent_reservation_complete.js')  
   script = template.result(binding)
 
-  page = {title: t.front_end_reservation.titles.complete_data, 
+  page = {title: nil,
   	      variables: {},
   	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}
 
@@ -107,7 +107,7 @@ get '/reserva/summary' do
   template = ERB.new File.read('./public/js/rent_reservation_summary.js')  
   script = template.result(binding)
 
-  page = {title: t.front_end_reservation.titles.summary, 
+  page = {title: nil,
           variables: {},
           scripts_source: "<script type=\"text/javascript\">#{script}</script>"}  
   
@@ -126,11 +126,35 @@ get '/reserva/:id' do
   template = ERB.new File.read('./public/js/rent_reservation_summary.js')  
   script = template.result(binding)
 
-  page = {title: t.front_end_reservation.titles.summary, 
+  page = {title: nil,
   	      variables: {},
   	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}	
   
   erb :rent_reservation_summary,
       {locals: settings.common_locals.merge(page: OpenStruct.new(page))}
 
+end
+
+#
+# Renting conditions
+#
+get '/condiciones' do
+
+  page = {title: t.front_end_reservation.titles.conditions,
+          variables: {}}
+
+  erb :renting_conditions,
+      {locals: settings.common_locals.merge(page: OpenStruct.new(page))}
+end
+
+#
+# Contact
+#
+get '/contacto' do
+
+  page = {title: t.front_end_reservation.titles.contact,
+          variables: {}}
+
+  erb :contact,
+      {layout: :layout_map, locals: settings.common_locals.merge(page: OpenStruct.new(page))}
 end

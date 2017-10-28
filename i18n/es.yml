@@ -1,8 +1,11 @@
 front_end_reservation:
   titles:
-    choose_product: Seleccionar product
+    home: Inicio
+    choose_product: Seleccionar producto
     complete_data: Completar datos
     summary: Su reserva
+    conditions: Condiciones de alquiler
+    contact: Contacto
   search_title: Buscar 
   search_button: Buscar  
   pickup_place: Lugar de entrega
