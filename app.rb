@@ -44,14 +44,15 @@ end
 #
 get '/' do
 
-  template = ERB.new File.read('./public/js/rent_search_form_full_v2.js')  
+  template = ERB.new File.read('./public/js/rent_search_form_full_v2.js')
   script = template.result(binding)
 
-  page = {title: 'Home', 
+  page = {title: 'Home',
   	      variables: {},
-  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}	
-  erb :rent_search_form_full_v2, 
-      {locals: settings.common_locals.merge(page: OpenStruct.new(page))}
+  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}
+  erb :rent_search_form_full_v2,
+      {layout: :layout_home, locals: settings.common_locals.merge(page: OpenStruct.new(page))}
+
 end
 
 #
@@ -72,7 +73,8 @@ end
 
   page = {title: t.front_end_reservation.titles.choose_product, 
   	      variables: {},
-  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}	
+  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}
+
   erb :rent_reservation_choose_product, 
       {locals: settings.common_locals.merge(page: OpenStruct.new(page))}
 end
@@ -87,7 +89,8 @@ get '/reserva/completar' do
 
   page = {title: t.front_end_reservation.titles.complete_data, 
   	      variables: {},
-  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}	
+  	      scripts_source: "<script type=\"text/javascript\">#{script}</script>"}
+
   erb :rent_reservation_complete,
       {locals: settings.common_locals.merge(page: OpenStruct.new(page))}
 
