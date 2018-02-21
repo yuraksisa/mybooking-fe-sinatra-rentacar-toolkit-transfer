@@ -83,7 +83,7 @@
   <h3>Detalle de la reserva</h3>
         <div class="f-row">
           <div class="one-fourth">Fecha de entrega</div>
-          <div class="three-fourth"><%%=new Date(booking.date_from).toString('d MMMM yyyy')%> <%%=booking.time_from%></div>
+          <div class="three-fourth"><%%=booking.date_from_full_format%> <%%=booking.time_from%></div>
         </div>
         <div class="f-row">
           <div class="one-fourth">Lugar de entrega</div>
@@ -91,7 +91,7 @@
         </div>
         <div class="f-row">
           <div class="one-fourth">Fecha de devolución</div>
-          <div class="three-fourth"><%%=new Date(booking.date_to).toString('d MMMM yyyy')%> <%%=booking.time_to%></div>
+          <div class="three-fourth"><%%=booking.date_to_full_format%> <%%=booking.time_to%></div>
         </div>
         <div class="f-row">
           <div class="one-fourth">Lugar de devolución</div>
