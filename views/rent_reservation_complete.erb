@@ -167,7 +167,7 @@
         <h5>ENTREGA</h5>
         <dl>
           <dt>Fecha</dt>
-          <dd><%%=new Date(shopping_cart.date_from).toString('d MMMM yyyy')%> <%%=shopping_cart.time_from%></dd>
+          <dd><%%=shopping_cart.date_from_full_format%> <%%=shopping_cart.time_from%></dd>
           <dt>Lugar</dt>
           <dd><%%=shopping_cart.pickup_place%></dd>
         </dl>
@@ -177,7 +177,7 @@
         <h5>DEVOLUCIÓN</h5>
         <dl>
           <dt>Fecha</dt>
-          <dd><%%=new Date(shopping_cart.date_to).toString('d MMMM yyyy')%> <%%=shopping_cart.time_to%></dd>
+          <dd><%%=shopping_cart.date_to_full_format%> <%%=shopping_cart.time_to%></dd>
           <dt>Lugar</dt>
           <dd><%%=shopping_cart.return_place%></dd>
         </dl>
